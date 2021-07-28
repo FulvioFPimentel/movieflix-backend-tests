@@ -32,7 +32,6 @@ public class Review implements Serializable{
 	}
 
 	public Review(Long id, String text) {
-		super();
 		this.id = id;
 		this.text = text;
 	}

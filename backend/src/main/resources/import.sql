@@ -5,6 +5,7 @@ INSERT INTO tb_genre (name) VALUES ('Acão');
 INSERT INTO tb_movie (title, sub_Title, year, img_Url, synopsis, genre_id) VALUES ('Matrix', 'Reloaded', 1999, 'https://img.discogs.com/ZcaAOZMJ8hCEqOBSroRQEFVAnWw=/fit-in/600x600/filters:strip_icc():format(webp):mode_rgb():quality(90)/discogs-images/R-1572706-1229377724.jpeg.jpg', 'Um grande combate contra os programas', 1);
 INSERT INTO tb_movie (title, sub_Title, year, img_Url, synopsis, genre_id) VALUES ('A Proposta', 'A química entre Reynolds e Bullock', 2009, 'https://institutobernalmeida.com.br/wp-content/uploads/2020/08/aproposta-1-jpg.jpeg', 'Uma historia de amor de um funcionario com sua chefe', 2);
 INSERT INTO tb_movie (title, sub_Title, year, img_Url, synopsis, genre_id) VALUES ('Transformers', 'O Último Cavaleiro', 2017, 'https://titel-kulturmagazin.net/wp-content/uploads/transformers-5.jpg', 'Uma grande batalhar com maquinas alienígenas', 3);
+INSERT INTO tb_movie (title, sub_Title, year, img_Url, synopsis, genre_id) VALUES ('Maze Runner', 'Correr ou Morrer', 2014, 'https://entreterse.com.br/wp-content/uploads/2018/09/maxresdefault-1-1-e1537141619318.jpg', 'Uma corrida pelos labiritos para sobreviver', 1);
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_VISITOR');
 INSERT INTO tb_role (authority) VALUES ('ROLE_MEMBER');

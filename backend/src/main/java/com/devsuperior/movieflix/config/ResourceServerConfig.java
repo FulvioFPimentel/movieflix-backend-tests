@@ -29,11 +29,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	@Autowired
 	private JwtTokenStore tokenStore;
 	
-	private static final String[] PUBLIC = { "/oauth/token", "/h2-console/**" };
+	private static final String[] PUBLIC = {"/oauth/token", "/h2-console/**"};
 	
-	private static final String[] MEMBER_POST = { "/reviews/**" };
-	
-	
+	private static final String[] MEMBER_POST = {"/reviews/**", "/movies/**"};
+		
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.tokenStore(tokenStore);
@@ -50,6 +49,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 		.antMatchers(PUBLIC).permitAll()
 		.antMatchers(HttpMethod.POST, MEMBER_POST).hasRole("MEMBER")
 		.anyRequest().authenticated();
+		
 		http.cors().configurationSource(corsConfigurationSource());
 		
 	}
@@ -74,6 +74,4 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);													// Registra o Cors com a máxima precedência 
 		return bean;
 	}	
-	
-	
 }
