@@ -39,7 +39,7 @@ public class User implements UserDetails, Serializable{
 	private String password;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tb_user_role", 
+	@JoinTable(name = "tb_user_role",
 			joinColumns = @JoinColumn(name = "user_id"), 
 			inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
@@ -152,6 +152,15 @@ public class User implements UserDetails, Serializable{
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+	
+	public boolean hasRole(String roleName) {
+		for (Role hole : roles) {
+			if(hole.getAuthority().equals(roleName)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

@@ -2,7 +2,7 @@ package com.devsuperior.movieflix.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
+import com.devsuperior.movieflix.entities.User;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -14,14 +14,16 @@ public class UserDTO implements Serializable {
 	public UserDTO() {
 	}
 	
-	public UserDTO(String name) {
-		this.name = name;
-	}
-
 	public UserDTO(Long id, String name, String email) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
+	}
+
+	public UserDTO(User user) {
+		this.id = user.getId();
+		this.name = user.getName();
+		this.email = user.getName();
 	}
 
 	public Long getId() {

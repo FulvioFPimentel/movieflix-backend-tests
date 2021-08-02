@@ -46,7 +46,7 @@ public class MovieDTO implements Serializable{
 	
 	public MovieDTO(Movie entity, List<Review> reviews) {
 		this(entity);
-		reviews.forEach(x -> this.reviews.add(new ReviewDTO(x, new UserDTO(x.user.getName()))));
+		reviews.forEach(x -> this.reviews.add(new ReviewDTO(x, x.user.getName())));
 	}
 
 	public Long getId() {
