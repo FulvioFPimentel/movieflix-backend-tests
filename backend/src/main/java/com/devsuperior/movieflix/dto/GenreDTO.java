@@ -12,7 +12,7 @@ public class GenreDTO implements Serializable{
 	
 	public GenreDTO() {
 	}
-
+	
 	public GenreDTO(Long id, String name) {
 		super();
 		this.id = id;

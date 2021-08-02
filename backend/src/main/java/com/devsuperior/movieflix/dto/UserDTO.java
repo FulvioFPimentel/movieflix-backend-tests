@@ -23,7 +23,7 @@ public class UserDTO implements Serializable {
 	public UserDTO(User user) {
 		this.id = user.getId();
 		this.name = user.getName();
-		this.email = user.getName();
+		this.email = user.getEmail();
 	}
 
 	public Long getId() {

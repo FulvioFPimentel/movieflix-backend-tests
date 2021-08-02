@@ -22,8 +22,6 @@ public class GenreResource {
 	public ResponseEntity<List<GenreDTO>> findAll(){
 		List<GenreDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
-	}
-	
-	
+	}	
 
 }
