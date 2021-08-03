@@ -14,22 +14,18 @@ public class ReviewDTO implements Serializable{
 	@NotBlank(message = "Campo Requerido")
 	private String text;
 	private Long movieId;
-	private String userName;
 	private UserDTO user;
 	
 	public ReviewDTO() {
 	}
-
-	public ReviewDTO(Review review, String userName) {
-		id = review.getId();
-		text = review.getText();
-		this.userName = userName;
+	
+	public ReviewDTO(Long id) {
+		this.id = id;
 	}
 	
 	public ReviewDTO(Review review) {
 		id = review.getId();
 		text = review.getText();
-		userName = review.getUser().getName();
 		movieId = review.movie.getId();
 		user = new UserDTO(review.getUser().getId(), review.getUser().getName(),review.getUser().getEmail());
 	}
@@ -56,14 +52,6 @@ public class ReviewDTO implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public UserDTO getUser() {
