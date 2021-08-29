@@ -27,7 +27,7 @@ public class ReviewService {
 	public ReviewDTO insert(ReviewDTO dto) {
 				
 		Review review = new Review();
-		review.setText(dto.getText());
+		review.setText(dto.getText());	
 			
 		User user = authService.authenticated();
 		review.setUser(user);
