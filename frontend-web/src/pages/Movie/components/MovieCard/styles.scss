@@ -1,0 +1,33 @@
+.movie-card {
+    height: 325px;
+    padding-top: 26px;
+    text-align: center;
+}
+
+.movie-info {
+    padding: 15px 17px 30px 14px;
+    text-align: left;
+}
+
+.movie-title {
+    font-size: 20px;
+    line-height: 27px;
+    letter-spacing: -0.015em;
+}
+
+.movie-year {
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.015em;
+    color: #FFC700;
+    padding-top: 3px;
+}
+
+.movie-subtitle {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: -0.015em;
+    color: #FFFFFF; 
+    padding-top: 3px;
+}
