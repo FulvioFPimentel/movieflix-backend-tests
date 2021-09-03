@@ -57,7 +57,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration corsConfig = new CorsConfiguration();                                    // Configuração do cors 
-		corsConfig.setAllowedOrigins(Arrays.asList("*"));								   // Quem vai poder acessar (“*”)
+		corsConfig.setAllowedOriginPatterns(Arrays.asList("*"));								   // Quem vai poder acessar (“*”)
 		corsConfig.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "PATCH"));	   // Quais métodos vou permitir ("POST", "GET", "PUT", "DELETE", "PATCH")
 		corsConfig.setAllowCredentials(true);													   // Vou permitir Credencial (true)
 		corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));			   // Quais cabeçalho eu vou deixar 

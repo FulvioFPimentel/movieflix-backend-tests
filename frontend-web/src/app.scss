@@ -20,6 +20,7 @@ a {
         text-decoration: none;
         color: unset;
     }
+    text-decoration: none;
 }
 
 .border-radius-4 {
@@ -30,3 +31,43 @@ a {
     background: #6C6C6C;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
 }
+
+.text-link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.margin-botton-30 {
+    margin-bottom: 30px;
+}
+
+.input-base {
+    height: 47px;
+    background: #FEFEFE;
+    border: 1px solid #FEFEFE;
+    color: #363636;
+    box-sizing: border-box;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.015em;
+
+    &::placeholder {
+        color: #9E9E9E;
+    }
+}
+
+.auth-button {
+    background: #FFC700;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.015em;
+    font-weight: bold;
+    color: #000000;
+}
+
+
+
