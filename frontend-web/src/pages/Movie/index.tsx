@@ -1,34 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { makePrivateRequest } from '../../core/utils/request';
 import { Link } from 'react-router-dom';
 import MovieCard from './components/MovieCard';
 import './styles.scss';
-import { makeRequest } from '../../core/utils/request';
+import { MoviesResponse } from '../../core/types/Movie';
+import FilterGenre from './components/FilterGenre';
 
-const Movie = () => {
+const Movies = () => {
+
+    const [moviesResponse, setMoviesResponse] = useState<MoviesResponse>();
+
+    console.log(moviesResponse);
 
     useEffect(() => {
-        makeRequest({ url: '/customers' })
-        .then(response => console.log(response));
+        const params = {
+            page: 0,
+            itemsPerPage: 12
+        }
+
+        makePrivateRequest({ url: '/movies', params })
+        .then(response => setMoviesResponse(response.data));
     }, []);
 
     return (
-        <div className="movie-container">
-        <h1>Movie... </h1>
+    <div className="movie-container">
+        <FilterGenre />
         <div className="catalog-movies">
-            <Link className="text-link" to="/movies/1"><MovieCard /></Link>
-            <Link className="text-link" to="/movies/2"><MovieCard /></Link>
-            <Link className="text-link" to="/movies/3"><MovieCard /></Link>
-            <Link className="text-link" to="/movies/4"><MovieCard /></Link>
-            <Link className="text-link" to="/movies/5"><MovieCard /></Link>
-            <Link className="text-link" to="/movies/6"><MovieCard /></Link>
-            <Link className="text-link" to="/movies/7"><MovieCard /></Link>
-            <Link className="text-link" to="/movies/8"><MovieCard /></Link>
-            <Link className="text-link" to="/movies/9"><MovieCard /></Link>
+
+            {moviesResponse?.content.map(movie => (
+                <Link className="text-link" to="/movies/1" key={movie.id}>
+                    <MovieCard Movie={movie} />
+                </Link>
+            ))}
+            
         </div>
     </div>
     )
 }
-    
 
-
-export default Movie;
+export default Movies;

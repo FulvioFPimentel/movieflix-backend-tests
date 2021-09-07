@@ -1,0 +1,47 @@
+.movie-details-container {
+    margin-top: 40px;
+    padding-left: 140px;
+    padding-right: 140px;
+}
+
+.icon-goback {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 40px;
+}
+
+.movies-details {
+    padding: 50px 40px 50px 40px;
+}
+
+.mouse-hover {
+    &:hover{    
+       margin-top: -2px;
+       margin-left: -2px;
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.movies-details-image {
+    width: 100%;
+    height: 100%;
+}
+
+.movie-details-card {
+    border-radius: 4px;
+}
+
+.movie-description-title {
+    font-size: 36px;
+    line-height: 49px;
+    letter-spacing: -0.015em;
+    color: #FFFFFF;
+}
+
+.movie-description-year {
+    font-size: 24px;
+    line-height: 33px;
+    letter-spacing: -0.015em;
+    color: #FFC700; 
+}
