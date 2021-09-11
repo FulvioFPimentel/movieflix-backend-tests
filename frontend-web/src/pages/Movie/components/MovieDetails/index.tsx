@@ -1,39 +1,53 @@
-import React from 'react';
+import { Movie } from 'core/types/Movie';
+import { makePrivateRequest } from 'core/utils/request';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ReactComponent as ArrowIcon } from '../../../../core/assets/images/arrow.svg'
-import { ReactComponent as Movie } from '../../../../core/assets/images/movie.svg'
+import { ReactComponent as ArrowIcon } from 'core/assets/images/arrow.svg'
 import './styles.scss'
 
 type ParamsType = {
-    moviesId: string;
+    movieId: string;
 }
 
 const MovieDetails = () => {
-    const { moviesId } = useParams<ParamsType>();
-
-    console.log(moviesId)
+    const { movieId } = useParams<ParamsType>();
+    const [movie, setMovies] = useState<Movie>();
+   useEffect(() => {
+        makePrivateRequest({ url: `/movies/${movieId}` })
+       .then(response => setMovies(response.data));
+   }, [movieId]);
 
     return (
         <div className="movie-details-container">
-            <div className="card-base border-radius-4 movies-details">
+            <div className="card-base border-radius-4 movie-details">
                 <Link to="/movies" className="movie-details-goback">
                     <ArrowIcon className="icon-goback mouse-hover" />
                 </Link>
 
                 <div className="row">
-                    <div className="col-6 ">
+                    <div className="col-6 pe-5">
                         <div className="movie-details-card text-center">
-                            <Movie className="movies-details-image"/>
+                            <img src={movie?.imgUrl} alt={movie?.title} className="movie-details-image" />
                         </div>
                     </div>
                     <div className="col-6">
                         <div className="movie-details-card">
-                            <h1 className="movie-description-title">O Retorno do Rei</h1>
-                            <h3 className="movie-description-year">2013</h3>
+                            <h1 className="movie-description-title">{movie?.title}</h1>
+                            <h3 className="movie-description-year">{movie?.year}</h3>
+                            <h3 className="movie-description-subtitle">
+                                 {movie?.subTitle}
+                            </h3>
+                            <p className="movie-description-text">
+                                {movie?.synopsis}
+                            </p>
                         </div>
                     </div>
                     
                 </div>
+            </div>
+            <div className="card-base border-radius-4 movie-evaluation">
+                <input className="form-control input-base" type="text" placeholder="Deixe sua avaliação aqui"/>
+                <button type="submit" className="btn btn-primary movie-evaluation-button">SALVAR AVALIAÇÃO</button>
             </div>
         </div>
     );

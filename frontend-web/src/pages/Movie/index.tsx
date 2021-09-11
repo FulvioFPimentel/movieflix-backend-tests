@@ -5,22 +5,23 @@ import MovieCard from './components/MovieCard';
 import './styles.scss';
 import { MoviesResponse } from '../../core/types/Movie';
 import FilterGenre from './components/FilterGenre';
+import Pagination from 'core/components/Pagination';
+
 
 const Movies = () => {
-
     const [moviesResponse, setMoviesResponse] = useState<MoviesResponse>();
-
-    console.log(moviesResponse);
+    const [activePage, setActivePage] = useState(0);
 
     useEffect(() => {
         const params = {
-            page: 0,
-            itemsPerPage: 12
+            page: activePage,
+            itemsPerPage: 8,
+            genreId: 0
         }
 
         makePrivateRequest({ url: '/movies', params })
         .then(response => setMoviesResponse(response.data));
-    }, []);
+    }, [activePage]);
 
     return (
     <div className="movie-container">
@@ -28,12 +29,18 @@ const Movies = () => {
         <div className="catalog-movies">
 
             {moviesResponse?.content.map(movie => (
-                <Link className="text-link" to="/movies/1" key={movie.id}>
+                <Link className="text-link" to={`/movies/${movie.id}`} key={movie.id}>
                     <MovieCard Movie={movie} />
                 </Link>
             ))}
             
         </div>
+        {moviesResponse && 
+            <Pagination 
+                totalPages={moviesResponse.totalPages}
+                activePage={activePage}
+                onChange={page => setActivePage(page)}
+            />}
     </div>
     )
 }

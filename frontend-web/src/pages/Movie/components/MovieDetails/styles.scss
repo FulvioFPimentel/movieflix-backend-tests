@@ -2,28 +2,26 @@
     margin-top: 40px;
     padding-left: 140px;
     padding-right: 140px;
+    min-width: 1120px;
 }
 
-.icon-goback {
-    width: 30px;
-    height: 30px;
-    margin-bottom: 40px;
-}
-
-.movies-details {
+.movie-details {
     padding: 50px 40px 50px 40px;
 }
 
 .mouse-hover {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 40px;
+    color: #9E9E9E;
+
     &:hover{    
-       margin-top: -2px;
-       margin-left: -2px;
-        width: 32px;
-        height: 32px;
+        cursor: pointer;
+        color: #FFC700;
     }
 }
 
-.movies-details-image {
+.movie-details-image {
     width: 100%;
     height: 100%;
 }
@@ -36,7 +34,8 @@
     font-size: 36px;
     line-height: 49px;
     letter-spacing: -0.015em;
-    color: #FFFFFF;
+    color: #c3c3c3;
+    padding-bottom: 3px;
 }
 
 .movie-description-year {
@@ -44,4 +43,40 @@
     line-height: 33px;
     letter-spacing: -0.015em;
     color: #FFC700; 
+}
+
+.movie-description-subtitle {
+    font-size: 24px;
+    line-height: 33px;
+    letter-spacing: -0.015em;
+    color: #FFFFFF;
+    font-weight: normal;
+    
+}
+
+.movie-description-text {
+    padding: 16px 20px;
+    margin-top: 16px;
+    border: 1px solid #a3a3a3;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.movie-evaluation {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 50px 40px 50px 40px;
+    text-align: center;
+}
+
+.movie-evaluation-button {
+    width: 400px;
+    height: 50px;
+    margin-top: 25px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 27px;
+    letter-spacing: -0.015em;
+    color: #000000;
 }
