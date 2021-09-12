@@ -3,6 +3,14 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 40px;
+
+    a {
+        text-decoration: none;
+    }
+
+    a:focus {
+        outline: none;
+    }
 }
 
 .pagination-item {
@@ -24,17 +32,20 @@
 
     &.active {
         background: #FFC700;
-    }
+    }   
     
+    &:hover {
+        color: #FFF;
+    }
 }
 
-.pagination-previuos {
+.pagination-previous {
     margin-right: 19px;
 }
 
 .pagination-next {
     transform: rotate(-180deg);
-    margin-left: 9px;
+    margin-left: 11px;
     cursor:pointer;
 }
 
@@ -46,5 +57,9 @@
 .page-inactive {
     color: #9E9E9E;
     pointer-events: none;
+}
+
+.pagination {
+    align-items: center;
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { makePrivateRequest } from '../../core/utils/request';
 import { Link } from 'react-router-dom';
 import MovieCard from './components/MovieCard';
@@ -38,7 +38,6 @@ const Movies = () => {
         {moviesResponse && 
             <Pagination 
                 totalPages={moviesResponse.totalPages}
-                activePage={activePage}
                 onChange={page => setActivePage(page)}
             />}
     </div>

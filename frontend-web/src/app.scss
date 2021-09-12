@@ -16,11 +16,11 @@ ul {
 }s
 
 a {
+    text-decoration: none;
     &:hover {
         text-decoration: none;
         color: unset;
     }
-    text-decoration: none;
 }
 
 .border-radius-4 {

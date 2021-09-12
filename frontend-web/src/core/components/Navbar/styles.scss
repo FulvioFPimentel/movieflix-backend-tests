@@ -1,6 +1,5 @@
 .main-nav {
     height: 70px;
-    color: #000000;
     align-items: center;
     padding-left: 40px;
     margin-left: 0;
@@ -11,4 +10,8 @@
     color: #000000;
     text-decoration: none;
     font-style: normal;
+    
+    &:hover {
+        color: #000000;
+    }
 }

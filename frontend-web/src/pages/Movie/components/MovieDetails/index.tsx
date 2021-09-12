@@ -1,8 +1,9 @@
 import { Movie } from 'core/types/Movie';
 import { makePrivateRequest } from 'core/utils/request';
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams} from 'react-router-dom';
 import { ReactComponent as ArrowIcon } from 'core/assets/images/arrow.svg'
+import { useHistory } from 'react-router'
 import './styles.scss'
 
 type ParamsType = {
@@ -12,17 +13,23 @@ type ParamsType = {
 const MovieDetails = () => {
     const { movieId } = useParams<ParamsType>();
     const [movie, setMovies] = useState<Movie>();
+    const history = useHistory();
+
    useEffect(() => {
         makePrivateRequest({ url: `/movies/${movieId}` })
        .then(response => setMovies(response.data));
    }, [movieId]);
 
+   const onClick = () => {
+        history.push('/movies')
+   }
+
     return (
         <div className="movie-details-container">
             <div className="card-base border-radius-4 movie-details">
-                <Link to="/movies" className="movie-details-goback">
+                <div onClick={onClick} className="movie-details-goback">
                     <ArrowIcon className="icon-goback mouse-hover" />
-                </Link>
+                </div>
 
                 <div className="row">
                     <div className="col-6 pe-5">
