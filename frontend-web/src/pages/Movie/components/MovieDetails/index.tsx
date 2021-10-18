@@ -1,10 +1,12 @@
-import { Movie } from 'core/types/Movie';
+import { Movie, Review} from 'core/types/Movie';
 import { makePrivateRequest } from 'core/utils/request';
-import { useEffect, useState } from 'react';
-import { useParams} from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { Link, useParams} from 'react-router-dom';
 import { ReactComponent as ArrowIcon } from 'core/assets/images/arrow.svg'
-import { useHistory } from 'react-router'
 import './styles.scss'
+import MovieReviews from '../MovieReviews';
+import InsertReviews from '../MovieReviews/InsertReviews';
+import { isAllowedByRole } from 'core/utils/auth';
 
 type ParamsType = {
     movieId: string;
@@ -12,50 +14,74 @@ type ParamsType = {
 
 const MovieDetails = () => {
     const { movieId } = useParams<ParamsType>();
-    const [movie, setMovies] = useState<Movie>();
-    const history = useHistory();
+    const [ moviesResponse, setMoviesResponse] = useState<Movie>();
+    const [ reviewsResponse, setReviewsResponse ] = useState<Review>();
+    
+    const getReviews = useCallback(() => {
+        makePrivateRequest({ url: `/movies/${movieId}/reviews` })
+        .then(response => setReviewsResponse(response.data))
+    },[movieId])
 
    useEffect(() => {
         makePrivateRequest({ url: `/movies/${movieId}` })
-       .then(response => setMovies(response.data));
+        .then(response => setMoviesResponse(response.data));
    }, [movieId]);
 
-   const onClick = () => {
-        history.push('/movies')
-   }
+   useEffect(() => {
+    getReviews();
+    }, [getReviews])
+
+    const insertReview = (data: string) => {
+        const payload = {
+            movieId,
+            text: data  
+        }
+
+    makePrivateRequest({ url: '/reviews', method:'POST', data: payload })
+        .then(() => {
+            getReviews();
+        })
+    }   
 
     return (
         <div className="movie-details-container">
             <div className="card-base border-radius-4 movie-details">
-                <div onClick={onClick} className="movie-details-goback">
+                <Link to='/movies' className="movie-details-goback">
                     <ArrowIcon className="icon-goback mouse-hover" />
-                </div>
+                </Link>
 
                 <div className="row">
                     <div className="col-6 pe-5">
                         <div className="movie-details-card text-center">
-                            <img src={movie?.imgUrl} alt={movie?.title} className="movie-details-image" />
+                            <img src={moviesResponse?.imgUrl} alt={moviesResponse?.title} className="movie-details-image" />
                         </div>
                     </div>
                     <div className="col-6">
                         <div className="movie-details-card">
-                            <h1 className="movie-description-title">{movie?.title}</h1>
-                            <h3 className="movie-description-year">{movie?.year}</h3>
+                            <h1 className="movie-description-title">{moviesResponse?.title}</h1>
+                            <h3 className="movie-description-year">{moviesResponse?.year}</h3>
                             <h3 className="movie-description-subtitle">
-                                 {movie?.subTitle}
+                                 {moviesResponse?.subTitle}
                             </h3>
                             <p className="movie-description-text">
-                                {movie?.synopsis}
+                                {moviesResponse?.synopsis}
                             </p>
                         </div>
                     </div>
-                    
                 </div>
             </div>
-            <div className="card-base border-radius-4 movie-evaluation">
-                <input className="form-control input-base" type="text" placeholder="Deixe sua avaliação aqui"/>
-                <button type="submit" className="btn btn-primary movie-evaluation-button">SALVAR AVALIAÇÃO</button>
-            </div>
+
+            {isAllowedByRole(['ROLE_MEMBER']) && (
+                <InsertReviews insertReview={insertReview} />
+            )}
+
+        {moviesResponse && (
+            <div className="card-base card-container-reviews">
+                <MovieReviews reviews={reviewsResponse} />
+            </div> 
+        )}
+
+               
         </div>
     );
 }

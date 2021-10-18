@@ -1,0 +1,36 @@
+.card-container-reviews {
+    margin-bottom: 40px;
+    margin-top: 40px;
+    padding: 25px 40px 45px 40px;
+}
+
+.user-description-name {
+    margin-left: 15px;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.015em;
+    color: #FFFFFF;
+}
+
+.user-description {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.user-description-reviews{
+    padding: 13px 22px;
+    border: 1px solid #E1E1E1;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-bottom: 24px;
+}
+
+.description-reviews {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: justify;
+    letter-spacing: -0.015em;
+    color: #d8d8d8;
+}

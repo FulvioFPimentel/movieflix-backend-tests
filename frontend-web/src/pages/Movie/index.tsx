@@ -11,21 +11,32 @@ import Pagination from 'core/components/Pagination';
 const Movies = () => {
     const [moviesResponse, setMoviesResponse] = useState<MoviesResponse>();
     const [activePage, setActivePage] = useState(0);
+    const [genreSelect, setGenreSelect] = useState(0);
 
     useEffect(() => {
         const params = {
             page: activePage,
             itemsPerPage: 8,
-            genreId: 0
+            genreId: genreSelect
         }
 
         makePrivateRequest({ url: '/movies', params })
         .then(response => setMoviesResponse(response.data));
-    }, [activePage]);
+    }, [activePage, genreSelect]);
+
+    const selectGenre = (value?: number) => {
+            if ( value !== undefined ){
+                setActivePage(0)
+                setGenreSelect(value)
+            } else {
+                setGenreSelect(0)
+            }
+    }
 
     return (
     <div className="movie-container">
-        <FilterGenre />
+        <FilterGenre 
+        onChangeGenre={value => selectGenre(value)}/>
         <div className="catalog-movies">
 
             {moviesResponse?.content.map(movie => (

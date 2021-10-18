@@ -1,0 +1,61 @@
+.box-register__menu {
+    color: #ece8e8;
+    background: #6C6C6C !important;
+
+    .box-register__menu-list {
+        :hover {
+            background-color: #FFC700;
+            color: #383838;
+        }
+    }
+
+    .box-register__option {
+        color: #fffdfd;
+        background: #525252;
+    }
+}
+
+.box-register__control {
+    height: 50px;
+    border: 1px solid #E1E1E1 !important;
+    box-sizing: border-box;
+    border-radius: 4px;
+    //background: #6C6C6C !important;
+}
+
+.box-register__single-value {
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.015em;
+    color: #363535 !important;
+}
+
+
+.box-register__placeholder {
+    color: #aaa9a9 !important;
+}
+
+.box-register__indicator{
+    color: #aaa9a9 !important;
+    :hover {
+        color:#9b9a9a;
+    }
+}
+
+.box-register__indicator-separator {
+    display: none;
+}
+
+.register-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: px;
+
+}
+
+.register-button-text {
+    height: 65px;
+    width: 180px;
+    font-weight: bold;
+}

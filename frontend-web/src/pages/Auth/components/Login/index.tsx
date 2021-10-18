@@ -5,6 +5,7 @@ import './styles.scss';
 import { makeLogin } from '../../../../core/utils/request';
 import { saveSessionData } from '../../../../core/utils/auth';
 import { useHistory, useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
 type FormData = {
     username: string;
@@ -14,6 +15,7 @@ type FormData = {
 type LocationState = {
     from: string;
 }
+
 
 const Login = () => {
 
@@ -44,7 +46,7 @@ const Login = () => {
                 </div>
             )}
                 <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-                    <div className=" margin-botton-30">
+                    <div className="margin-botton-30">
                         <input 
                             type="email" 
                             className={`form-control input-base ${errors.username ? ' is-invalid' : '' }`}
@@ -74,6 +76,12 @@ const Login = () => {
                    </div>
                         
                         <button type="submit" className="btn btn-primary auth-button">FAZER LOGIN</button>
+                        <div className="auth-register">
+                            Ainda não tem conta?
+                            <Link to="/register" className="text-link">
+                                <h5 className="auth-register-link"> Cadastre-se</h5>
+                            </Link>
+                        </div>
                 </form>
         </AuthCard>
     )

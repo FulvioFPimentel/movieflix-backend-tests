@@ -23,7 +23,7 @@ public class ReviewDTO implements Serializable{
 		id = review.getId();
 		text = review.getText();
 		movieId = review.getMovie().getId();
-		user = new UserDTO(review.getUser().getId(), review.getUser().getName(),review.getUser().getEmail());
+		user = new UserDTO(review.getUser());
 	}
 	
 	public String getText() {
