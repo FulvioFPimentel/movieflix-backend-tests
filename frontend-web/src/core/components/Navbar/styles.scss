@@ -2,6 +2,7 @@
     height: 70px;
     align-items: center;
     padding-left: 40px;
+    padding-right: 30px;
     margin-left: 0;
     margin-right: 0;
 }
@@ -15,3 +16,27 @@
         color: #000000;
     }
 }
+
+.nav-login-text {
+    margin-top: 3px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    text-decoration: none !important;
+    color: #000000;
+    line-height: 33px;
+    letter-spacing: -0.015em;
+
+    &:hover {
+        color: #000000;
+    }
+}
+
+.nav-login-name{
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+
+
+

@@ -7,6 +7,8 @@ import './styles.scss'
 import MovieReviews from '../MovieReviews';
 import InsertReviews from '../MovieReviews/InsertReviews';
 import { isAllowedByRole } from 'core/utils/auth';
+import MovieImageLoader from '../Loaders/MovieImageLoader';
+import MovieDescriptionLoader from '../Loaders/MovieDescriptionLoader';
 
 type ParamsType = {
     movieId: string;
@@ -16,20 +18,27 @@ const MovieDetails = () => {
     const { movieId } = useParams<ParamsType>();
     const [ moviesResponse, setMoviesResponse] = useState<Movie>();
     const [ reviewsResponse, setReviewsResponse ] = useState<Review>();
+    const [ isLoading, setIsLoading ] = useState(false);
+    const [ isLoadingReviews, setIsLoadingReviews ] = useState(false);
     
     const getReviews = useCallback(() => {
         makePrivateRequest({ url: `/movies/${movieId}/reviews` })
         .then(response => setReviewsResponse(response.data))
+        .finally(() => {
+            setIsLoadingReviews(false);
+        })
     },[movieId])
 
    useEffect(() => {
+        setIsLoading(true)
+        setIsLoadingReviews(true)
         makePrivateRequest({ url: `/movies/${movieId}` })
-        .then(response => setMoviesResponse(response.data));
-   }, [movieId]);
-
-   useEffect(() => {
-    getReviews();
-    }, [getReviews])
+        .then(response => setMoviesResponse(response.data))
+        .finally(() => {
+            getReviews();
+            setIsLoading(false);
+        })
+   }, [movieId, getReviews]);
 
     const insertReview = (data: string) => {
         const payload = {
@@ -51,21 +60,31 @@ const MovieDetails = () => {
                 </Link>
 
                 <div className="row">
-                    <div className="col-6 pe-5">
-                        <div className="movie-details-card text-center">
-                            <img src={moviesResponse?.imgUrl} alt={moviesResponse?.title} className="movie-details-image" />
+                    <div className="col-6 movie-details-card">
+                        <div className="movie-details-card">
+                            {isLoading ? <MovieImageLoader /> : (
+                                <img src={moviesResponse?.imgUrl} alt={moviesResponse?.title} className="movie-details-image" />
+                            )}
+                            
                         </div>
                     </div>
+
                     <div className="col-6">
                         <div className="movie-details-card">
-                            <h1 className="movie-description-title">{moviesResponse?.title}</h1>
-                            <h3 className="movie-description-year">{moviesResponse?.year}</h3>
-                            <h3 className="movie-description-subtitle">
-                                 {moviesResponse?.subTitle}
-                            </h3>
-                            <p className="movie-description-text">
-                                {moviesResponse?.synopsis}
-                            </p>
+                            {isLoading ? <MovieDescriptionLoader /> : (
+                                <>
+                                    <h1 className="movie-description-title">{moviesResponse?.title}</h1>
+                                    <h3 className="movie-description-year">{moviesResponse?.year}</h3>
+                                    <h3 className="movie-description-subtitle">
+                                        {moviesResponse?.subTitle}
+                                    </h3>
+                                    <p className="movie-description-text">
+                                        {moviesResponse?.synopsis}
+                                    </p>
+                                </>
+                            )}
+                            
+
                         </div>
                     </div>
                 </div>
@@ -75,11 +94,16 @@ const MovieDetails = () => {
                 <InsertReviews insertReview={insertReview} />
             )}
 
-        {moviesResponse && (
-            <div className="card-base card-container-reviews">
+            {isLoadingReviews ? (
+                <div className="card-base card-container-reviews">
+                    <h6 className="user-reviews">Carregando...</h6>
+                </div>
+
+            ) : (
                 <MovieReviews reviews={reviewsResponse} />
-            </div> 
-        )}
+            )}
+
+  
 
                
         </div>

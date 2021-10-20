@@ -13,6 +13,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    :hover {
+        color: #b4b4b4;
+    }
 }
 
 .auth-register-link {

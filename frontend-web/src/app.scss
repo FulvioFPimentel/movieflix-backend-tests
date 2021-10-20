@@ -36,13 +36,18 @@ a {
 .text-link {
     color: inherit;
     text-decoration: inherit;
-    :hover {
-        color: #9E9E9E;
-    }
 }
 
 .margin-botton-30 {
     margin-bottom: 30px;
+}
+
+.margin-top-30 {
+    margin-top: 30px;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
 }
 
 .input-base {

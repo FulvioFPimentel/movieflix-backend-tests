@@ -11,6 +11,7 @@ type formData = {
     name: string;
     email: string;
     password: string;
+    passwordCheck: string;
     roles: Role[];
 }
 
@@ -21,24 +22,29 @@ const options: Role[] = [
 
 const Register = () => {
 
-    const { register, handleSubmit, control } = useForm<formData>();
-    const [ checkPassword, setCheckPassword ] = useState('');
+    const { register, handleSubmit, control, formState: { errors } } = useForm<formData>();
+    const [ confirmedCheck, setConfirmedCheck ] = useState(false);
 
     const onSubmit = (data: formData) => {
-
-        if (data.password === checkPassword) {
+        if (data.password === data.passwordCheck) {
             makeRequest({ url: '/users', method: 'POST', data })
                 .then(() => (
                     history.push('/login')
                 )
             )
+            return setConfirmedCheck(false)
         }
+        return setConfirmedCheck(true)
+    }
+
+    const onCancel = () => {
+        history.replace('/login')
     }
 
     return (
         <AuthCard title="Cadastro">
             <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-                <div className="margin-botton-30">
+                <div className="">
                     <input 
                         type="text"
                         {...register('name' , { 
@@ -49,8 +55,11 @@ const Register = () => {
                         >
                     </input>
                 </div>
+                {errors.name && (
+                    <div className="invalid-feedback d-block">{errors.name.message}</div>
+                )}
 
-                <div className="margin-botton-30">
+                <div className={`${errors.name ? 'margin-top-20' : 'margin-top-30'}`}>
                     <input
                         type="email"
                         {...register('email', {
@@ -65,8 +74,11 @@ const Register = () => {
                         >
                     </input>
                 </div>
+                {errors.email && (
+                    <div className="invalid-feedback d-block">{errors.email.message}</div>
+                )}
 
-                <div className="margin-botton-30">
+                <div className={`${errors.email ? 'margin-top-20' : 'margin-top-30'}`}>
                     <Controller 
                         control={control}
                         name="roles"
@@ -86,30 +98,48 @@ const Register = () => {
                             />    
                         )}
                     />
-
                 </div>
-                <div className="margin-botton-30">
+                {errors.roles && (
+                    <div className="invalid-feedback d-block">Campo obrigatorio</div>
+                )}
+                <div className={`${errors.roles ? 'margin-top-20' : 'margin-top-30'}`}>
                     <input
                         type="password"
-                        {...register('password')}
+                        {...register('password', {
+                            required:"Campo obrigatorio"
+                        })}
                         className="form-control input-base"
                         placeholder="Senha"
                         >
                     </input>
                 </div>
-
-                <div className="margin-botton-30">
+                {errors.password && (
+                    <div className="invalid-feedback d-block">Campo obrigatorio</div>
+                )}
+                <div className={`${errors.password ? 'margin-top-20' : 'margin-top-30'}`}>
+                    
                     <input
-                        type="password"
+                        type="password" 
+                        {...register('passwordCheck', {
+                            required:"Campo obrigatorio"
+                        })}
                         className="form-control input-base"
                         placeholder="Confirmar Senha"
-                        onChange={value => setCheckPassword(value.target.value)}
                         >
                     </input>
                 </div>
-                <div className="register-button">
+                {errors.passwordCheck && (
+                    <div className="invalid-feedback d-block">Campo obrigatorio</div>
+                )}
+                {confirmedCheck && (
+                    <div className="invalid-feedback d-block">Confirmação de senha incorreta</div>
+                )}
+                <div className={`register-button ${errors.passwordCheck ? 'margin-top-20' : 'margin-top-30'}`}>
                   
-                    <button className="btn btn-primary register-button-text">CANCELAR</button>
+                    <button 
+                        className="btn btn-primary register-button-text"
+                        onClick={onCancel}
+                        >CANCELAR</button>
                    
                   
                     <button className="btn btn-primary register-button-text">CADASTRAR</button>
