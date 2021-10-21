@@ -23,10 +23,14 @@ const Login = () => {
     const [hasError, setHasError] = useState(false);
     const history = useHistory();
     let location = useLocation<LocationState>();
+    const [ blockComponents, setBlockComponents ] = useState(false);
+
+    const loading = blockComponents === true ? 'loading' : 'Login';
 
     const { from } = location.state || { from: { pathname: "/movies" } };
 
     const onSubmit = (data:FormData) => {
+        setBlockComponents(true)
         makeLogin(data)
         .then((response) => {
             setHasError(false);
@@ -35,11 +39,12 @@ const Login = () => {
         })
         .catch(() => {
             setHasError(true);
+            setBlockComponents(false)
         });
     }
 
     return (
-        <AuthCard title="login">
+        <AuthCard title={loading}>
             {hasError && (
                 <div className="alert alert-danger mt-5">
                     Usuário ou senha inválido!
@@ -48,6 +53,7 @@ const Login = () => {
                 <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
                     <div className="margin-botton-30">
                         <input 
+                            disabled={blockComponents}
                             type="email" 
                             className={`form-control input-base ${errors.username ? ' is-invalid' : '' }`}
                             placeholder="Email"
@@ -65,6 +71,7 @@ const Login = () => {
                     </div>
                    <div>
                         <input 
+                            disabled={blockComponents}
                             type="password" 
                             className={`form-control input-base ${errors.password ? ' is-invalid' : '' }`}
                             placeholder="Senha"
@@ -75,13 +82,27 @@ const Login = () => {
                         )}
                    </div>
                         
-                        <button type="submit" className="btn btn-primary auth-button">FAZER LOGIN</button>
-                        <div className="auth-register">
-                            Ainda não tem conta?
-                            <Link to="/register" className="text-link">
+                        <button 
+                            disabled={blockComponents}
+                            type="submit" 
+                            className="btn btn-primary auth-button"
+                            >FAZER LOGIN</button>
+
+                        {blockComponents ? (
+                            <div className="auth-register">
+                                Logando...
+                            </div>
+                        ) : (
+                            <div className="auth-register">
+                                Ainda não tem conta?
+                            <Link 
+                                to="/register" 
+                                className="text-link"
+                                >
                                 <h5 className="auth-register-link"> Cadastre-se</h5>
                             </Link>
                         </div>
+                        )}
                 </form>
         </AuthCard>
     )

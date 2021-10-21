@@ -24,9 +24,14 @@ const Register = () => {
 
     const { register, handleSubmit, control, formState: { errors } } = useForm<formData>();
     const [ confirmedCheck, setConfirmedCheck ] = useState(false);
+    const [ blockComponents, setBlockComponents ] = useState(false);
+
+    const loading = blockComponents === true ? 'loading' : 'Cadastro';
 
     const onSubmit = (data: formData) => {
-        if (data.password === data.passwordCheck) {
+
+        if (data.password === data.passwordCheck) { 
+            setBlockComponents(true)
             makeRequest({ url: '/users', method: 'POST', data })
                 .then(() => (
                     history.push('/login')
@@ -42,10 +47,11 @@ const Register = () => {
     }
 
     return (
-        <AuthCard title="Cadastro">
+        <AuthCard title={loading}>
             <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="">
                     <input 
+                        disabled={blockComponents}
                         type="text"
                         {...register('name' , { 
                             required: "Campo obrigatorio!"  
@@ -61,6 +67,7 @@ const Register = () => {
 
                 <div className={`${errors.name ? 'margin-top-20' : 'margin-top-30'}`}>
                     <input
+                        disabled={blockComponents}
                         type="email"
                         {...register('email', {
                             required: "Campo obrigatorio",
@@ -85,6 +92,7 @@ const Register = () => {
                         rules={{required: "Campo obrigatorio"}}
                         render={({ field: {value, onChange}}) => (
                             <Select
+                                isDisabled={blockComponents}
                                 value={value}
                                 onChange={onChange}
                                 options={options}
@@ -104,6 +112,7 @@ const Register = () => {
                 )}
                 <div className={`${errors.roles ? 'margin-top-20' : 'margin-top-30'}`}>
                     <input
+                        disabled={blockComponents}
                         type="password"
                         {...register('password', {
                             required:"Campo obrigatorio"
@@ -119,6 +128,7 @@ const Register = () => {
                 <div className={`${errors.password ? 'margin-top-20' : 'margin-top-30'}`}>
                     
                     <input
+                        disabled={blockComponents}
                         type="password" 
                         {...register('passwordCheck', {
                             required:"Campo obrigatorio"
@@ -137,12 +147,16 @@ const Register = () => {
                 <div className={`register-button ${errors.passwordCheck ? 'margin-top-20' : 'margin-top-30'}`}>
                   
                     <button 
+                        disabled={blockComponents}
                         className="btn btn-primary register-button-text"
                         onClick={onCancel}
                         >CANCELAR</button>
                    
                   
-                    <button className="btn btn-primary register-button-text">CADASTRAR</button>
+                    <button 
+                        disabled={blockComponents}
+                        className="btn btn-primary register-button-text"
+                        >CADASTRAR</button>
                   
                 </div>
             </form>
