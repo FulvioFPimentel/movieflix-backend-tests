@@ -64,8 +64,8 @@ const MovieDetails = () => {
                         <div className="movie-details-card">
                             {isLoading ? <MovieImageLoader /> : (
                                 <img src={moviesResponse?.imgUrl} alt={moviesResponse?.title} className="movie-details-image" />
-                            )}
-                            
+                            )} 
+                             
                         </div>
                     </div>
 
