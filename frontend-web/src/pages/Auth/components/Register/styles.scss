@@ -59,3 +59,26 @@
     width: 180px;
     font-weight: bold;
 }
+
+.cancelar-button-text{
+    height: 65px;
+    width: 180px;
+    font-weight: bold;
+}
+
+@media(max-width: 576px){
+
+    .register-button-text {
+        height: 65px;
+        width: 180px;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .cancelar-button-text{
+        height: 65px;
+        width: 180px;
+        font-weight: bold;
+    }
+
+}

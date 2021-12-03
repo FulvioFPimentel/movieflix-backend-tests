@@ -9,8 +9,8 @@ const MovieCardLoader = () => {
             {loaderItems.map(items => (
                 <ContentLoader 
                     speed={1}
-                    width={260}
-                    height={325}
+                    width="100%"
+                    height="100%"
                     viewBox="0 0 260 325"
                     backgroundColor="#565656"
                     foregroundColor="#6C6C6C"

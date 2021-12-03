@@ -1,7 +1,7 @@
 .auth-container {
     display: flex;
     justify-content:center;
-    padding: 40px 120px 120px 0;  
+    padding: 40px 60px 120px 60px;  
 }
 
 .auth-info-title {
@@ -25,11 +25,44 @@
 }
 
 .auth-info {
-    padding-right: 120px;
+    padding-right: 6%;
 }
 
 .auth-image {
     width: 480px;
     height: 440px;
 }
+
+@media(max-width: 1078px) {
+
+    .auth-info {
+        padding-right: 0;
+    }
+
+}
+
+@media(max-width: 768px) {
+
+    .auth-container {
+        display: flex;
+        flex-direction: column;
+        justify-content:start;
+        align-items: center;
+        padding: 40px;  
+    }
+
+    .auth-info {
+       display: none;
+    }
+}
+
+@media(max-width: 576px) {
+
+    .auth-container {
+        display: flex;
+        align-items: center;
+        padding: 20px 20px 50px 20px;  
+    }
+}
+
 

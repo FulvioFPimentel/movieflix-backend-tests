@@ -58,19 +58,16 @@ const MovieDetails = () => {
                 <Link to='/movies' className="movie-details-goback">
                     <ArrowIcon className="icon-goback mouse-hover" />
                 </Link>
-
-                <div className="row">
-                    <div className="col-6 movie-details-card">
-                        <div className="movie-details-card">
+                    
+                    <div className="movie-details-card">
+                        <div className="movie-details-image">
                             {isLoading ? <MovieImageLoader /> : (
-                                <img src={moviesResponse?.imgUrl} alt={moviesResponse?.title} className="movie-details-image" />
+                                <img src={moviesResponse?.imgUrl} alt={moviesResponse?.title} className="movie-image" />
                             )} 
                              
                         </div>
-                    </div>
-
-                    <div className="col-6">
-                        <div className="movie-details-card">
+                   
+                        <div className="movie-details-info">
                             {isLoading ? <MovieDescriptionLoader /> : (
                                 <>
                                     <h1 className="movie-description-title">{moviesResponse?.title}</h1>
@@ -83,11 +80,9 @@ const MovieDetails = () => {
                                     </p>
                                 </>
                             )}
-                            
-
-                        </div>
+                        
+                         </div>
                     </div>
-                </div>
             </div>
 
             {isAllowedByRole(['ROLE_MEMBER']) && (

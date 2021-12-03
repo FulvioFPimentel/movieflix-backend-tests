@@ -1,5 +1,8 @@
 .main-nav {
     height: 70px;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
     align-items: center;
     padding-left: 40px;
     padding-right: 30px;
@@ -35,6 +38,43 @@
 .nav-login-name{
     margin-right: 10px;
     font-size: 15px;
+}
+
+.nav-login-separator {
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+@media(max-width: 576px) {
+
+    .main-nav {
+        padding-left: 20px;
+        padding-right: 10px;
+    }
+
+    .nav-login-text {
+        margin-top: 3px;
+        display: flex;
+        justify-content: right;
+        flex-direction: column;
+        align-items:flex-end;
+        text-decoration: none !important;
+        color: #000000;
+        line-height: 33px;
+        letter-spacing: -0.015em;
+    
+        &:hover {
+            color: #000000;
+        }
+    } 
+
+    .nav-login-separator {
+        display: none;
+    }
+
+    .nav-login-name {
+        margin-bottom: 3px;
+    }
 }
 
 

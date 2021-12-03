@@ -94,7 +94,9 @@ const Login = () => {
                             </div>
                         ) : (
                             <div className="auth-register">
+                                <>
                                 Ainda não tem conta?
+                                </>
                             <Link 
                                 to="/register" 
                                 className="text-link"

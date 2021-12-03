@@ -21,3 +21,20 @@
 .auth-register-link {
     margin-left: 8px;
 }
+
+@media(max-width: 576px) {
+    .auth-button {
+        width: 100%;
+        height: 65px;
+    }
+
+    .auth-register {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .auth-register-link {
+        margin-left: 0;
+    }
+}

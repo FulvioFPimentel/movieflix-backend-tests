@@ -20,21 +20,18 @@ const Navbar = () => {
 
     return (
         <nav className="row bg-primary main-nav">
-            <div className="row">
                 <div className="col-2">
                     <Link to="/movies" className="nav-logo-text">
                         <h4>MovieFlix</h4>
                     </Link>
                 </div>
-                <div className="col-7">
 
-                </div>
                 <div className="col-3">
                     { currentUser && (
                         <>
                             <div className="nav-login-text">
                                 <h6 className="nav-login-name">{currentUser}</h6>
-                                    <h6 className="nav-login-name">|</h6>
+                                    <h6 className="nav-login-separator">|</h6>
                                     <a href="#logout" 
                                         className="nav-login-text"
                                         onClick={handleLogout}
@@ -46,7 +43,6 @@ const Navbar = () => {
                         </>
                     )}
                 </div>
-            </div>
 
         </nav>
     )

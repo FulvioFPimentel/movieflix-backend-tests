@@ -12,3 +12,10 @@
     grid-gap: 40px 19px;
     justify-content: space-between;
 }
+
+@media(max-width: 576px) {
+    .movie-container {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+}

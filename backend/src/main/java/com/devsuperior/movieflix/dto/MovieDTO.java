@@ -116,11 +116,5 @@ public class MovieDTO implements Serializable{
 	public List<ReviewDTO> getReviews() {
 		return reviews;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
 	
 }

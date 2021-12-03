@@ -148,7 +148,7 @@ const Register = () => {
                   
                     <button 
                         disabled={blockComponents}
-                        className="btn btn-primary register-button-text"
+                        className="btn btn-primary cancelar-button-text"
                         onClick={onCancel}
                         >CANCELAR</button>
                    

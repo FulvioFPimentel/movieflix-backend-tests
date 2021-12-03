@@ -34,3 +34,11 @@
     letter-spacing: -0.015em;
     color: #d8d8d8;
 }
+
+@media(max-width: 576px) {
+    .card-container-reviews {
+        margin-bottom: 40px;
+        margin-top: 40px;
+        padding: 40px 4% 50px 4%;
+    }
+}

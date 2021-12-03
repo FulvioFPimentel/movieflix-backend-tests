@@ -1,4 +1,4 @@
-package com.devsuperior.movieflix.entities;
+	package com.devsuperior.movieflix.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;

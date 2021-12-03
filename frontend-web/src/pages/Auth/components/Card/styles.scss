@@ -1,9 +1,9 @@
 .auth-card {
-    width: 480px;
+    width: 100%;
     padding: 75px 50px 120px 50px;
     border-radius: 4px;
 }
-
+ 
 .auth-card-title {
     text-transform: uppercase;
     font-weight: normal;
@@ -18,5 +18,22 @@
     height: 100px;
     width: 100px;
     padding-left: 115px;   
+}
 
+@media(max-width:576px) {
+
+    .auth-card {
+        width: 91vw;
+        padding: 50px 20px 60px 20px;
+    }
+
+    .auth-card-title {
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: 32px;
+        line-height: 65px;
+        text-align: center;
+        letter-spacing: -0.015em;
+    }
+    
 }
