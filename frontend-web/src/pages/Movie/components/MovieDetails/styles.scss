@@ -134,6 +134,7 @@
 }
 
 @media(max-width:768px) {
+
     .movie-details {
         display: flex;
         flex-direction: column;
@@ -167,6 +168,16 @@
 
 @media(max-width: 576px) {
 
+    .movie-details {
+        margin-top: 40px;
+        padding: 40px 4% 50px 4%;
+    }
+    
+    .movie-details-loading {
+        width: 85vw;
+        height: 70%;
+    }
+
     .movie-image {
         width: 85vw;
         height: 70%;
@@ -176,13 +187,7 @@
         margin-top: 5px;
         padding: 0 4% 0 4%;
     }
-
-    .movie-details {
-        margin-top: 40px;
-        padding: 40px 4% 50px 4%;
-       
-    }
-
+    
     .movie-evaluation {
         margin-top: 40px;
         padding: 40px 4% 50px 4%;

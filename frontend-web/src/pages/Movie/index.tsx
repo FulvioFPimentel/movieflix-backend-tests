@@ -43,7 +43,6 @@ const Movies = () => {
         <FilterGenre 
         onChangeGenre={value => selectGenre(value)}/>
         <div className="catalog-movies">
-
             {isLoading ? <MovieCardLoader /> : (
                 moviesResponse?.content.map(movie => (
                     <Link className="text-link" to={`/movies/${movie.id}`} key={movie.id}>
@@ -51,9 +50,6 @@ const Movies = () => {
                     </Link>
                 ))
             )}
-
-         
-            
         </div>
         {moviesResponse && 
             <Pagination 

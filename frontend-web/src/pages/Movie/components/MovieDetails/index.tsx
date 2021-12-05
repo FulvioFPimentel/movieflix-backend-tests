@@ -61,14 +61,18 @@ const MovieDetails = () => {
                     
                     <div className="movie-details-card">
                         <div className="movie-details-image">
-                            {isLoading ? <MovieImageLoader /> : (
+                            {isLoading ? 
+                            <div className="movie-details-loading">
+                            <MovieImageLoader /> </div>: (
                                 <img src={moviesResponse?.imgUrl} alt={moviesResponse?.title} className="movie-image" />
                             )} 
                              
                         </div>
                    
                         <div className="movie-details-info">
-                            {isLoading ? <MovieDescriptionLoader /> : (
+                            {isLoading ? 
+                             <div className="movie-details-loading"><MovieDescriptionLoader /></div>
+                             : (
                                 <>
                                     <h1 className="movie-description-title">{moviesResponse?.title}</h1>
                                     <h3 className="movie-description-year">{moviesResponse?.year}</h3>

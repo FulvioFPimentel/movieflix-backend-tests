@@ -14,8 +14,17 @@
 }
 
 @media(max-width: 576px) {
+
     .movie-container {
         padding-left: 4%;
         padding-right: 4%;
     }
+
+    .catalog-movies {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+    }
+    
 }
