@@ -1,10 +1,11 @@
 import React from 'react'
-import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
+import { createStackNavigator } from '@react-navigation/stack'
 import { Login, NavBar, Movie, MovieDetails } from '../pages'
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { colors, nav } from '../styles';
 
 export type StackParam = {
+    NavBar: undefined;
     Movie: undefined;
     MovieDetails: {id: number}
     Login: undefined;

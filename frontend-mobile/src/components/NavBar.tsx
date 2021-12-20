@@ -26,7 +26,6 @@ const NavBar: React.FC<StackParam> = () => {
         setAuthenticated(false)
         doLogout();
         navigation.navigate("Login")
-        
     }
 
     return (

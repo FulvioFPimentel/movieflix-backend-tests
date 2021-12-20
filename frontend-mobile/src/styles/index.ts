@@ -10,7 +10,6 @@ const colors = {
     lightGray: "#9E9E9E",
     while: "#E1E1E1",
     black: "#000000",
-
 }
 
 const theme = StyleSheet.create({
@@ -99,7 +98,7 @@ const theme = StyleSheet.create({
     // Login card 
     loginCard: {
         width: "100%",
-        height: "98%",
+        height: 560,
         padding: 20,
         backgroundColor: colors.gray,
         borderRadius: 5,
@@ -122,6 +121,7 @@ const theme = StyleSheet.create({
         height: 50,
         borderRadius: 4,
         backgroundColor: colors.orange,
+        flexDirection: "row",
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20
@@ -145,8 +145,19 @@ const theme = StyleSheet.create({
         borderRadius: 4,
         paddingLeft: 15,
         fontSize: 18,
-        marginBottom: 90,
-        marginTop: 20,
+        marginBottom: 80,
+        marginTop: 30,
+    },
+
+    loadingButtonContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+    loadingButton: {
+        fontSize:16,
+        marginLeft: 5,
     },
 
     //Search input
@@ -203,7 +214,7 @@ const theme = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        marginBottom: 20,
+        marginTop: 20,
     },
 
     movieImageContainer:{
@@ -222,7 +233,32 @@ const theme = StyleSheet.create({
         borderRadius:10,
         borderColor:colors.while,
         padding: 10,
-    }
+    },
+
+    // Reviews 
+    reviewsContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        marginLeft: 5,
+        marginBottom: 10,
+    },
+
+    movieContainerReviews: {
+        borderWidth: 1,
+        borderRadius:4,
+        borderColor:colors.while,
+        padding: 10,
+        marginBottom: 20
+    },
+
+    //Register 
+    registerContainer: {
+    flexDirection: "row", 
+    justifyContent:"center",
+    alignItems:"center",
+    marginTop: 15,
+    },
 
 });
 
@@ -344,7 +380,32 @@ const text = StyleSheet.create({
     modalText: {
         fontSize: 15,
         fontWeight: "bold"
-    }
+    },
+
+    //reviews
+    reviewsName:{
+        marginLeft: 15,
+        fontSize: 16,
+        fontWeight:"bold",
+        color: colors.while,
+    },
+
+    movieDetailReviews: {
+        color: colors.lightGray,
+        lineHeight: 20,
+        fontSize: 16,
+    },
+
+    //register
+    registerLoginText: {
+        fontSize: 18,
+        color:colors.while
+    },
+
+    registerButtonText: {
+        fontSize: 20,
+        color: colors.lightGray
+    },
 
 });
 

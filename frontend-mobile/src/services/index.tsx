@@ -33,6 +33,7 @@ export async function getReviewsData(id: Number){
     const token = await userToken();
     const res = api.get(`movies/${id}/reviews`,
     { headers: {'Authorization': `bearer ${token}`}})
+
     return res;
 }
 
@@ -46,6 +47,13 @@ export async function getGenresData(){
 export async function getMoviesToGenre(id: number) {
     const token = await userToken();
     const res = api.get(`/movies?page=0&itemsPerPage=20&direction=ASC&orderBy=title&genreId=${id}`,
+    { headers: {'Authorization': `bearer ${token}`}});
+    return res;
+}
+
+export async function postMovieReviews(data: object){
+    const token =  await userToken();
+    const res = api.post(`/reviews`, data,
     { headers: {'Authorization': `bearer ${token}`}});
     return res;
 }

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Image, ActivityIndicator } from 'react-native'
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import { getDetailMovie, getReviewsData } from '../../services';
+import { getDetailMovie, getReviewsData, postMovieReviews } from '../../services';
+import { isAllowedByRole } from '../../services/auth';
 import { theme, text } from '../../styles';
 import { MoviesData } from './Movie';
 
@@ -41,12 +42,22 @@ const MovieDetails: React.FC<MoviesData> = ({ route: {params: { id }}}) => {
 
     const [ movie, serMovie ] = useState<movieData>();
     const [ reviews, setReviews ] = useState<reviewsData[]>([]);
+    const [ addRevies, setAddRevies ] = useState({
+        text: ""
+    });
     const [ loading, setLoading] = useState(false);
-
+    const [ accessReviews, setAccessReviews ] = useState(false);
+  
+   async function accessReviewsAuthority() {
+       const accessByRole = await isAllowedByRole(['ROLE_MEMBER'])
+       setAccessReviews(accessByRole);
+   }
+    
     async function loadMovieData() {
         setLoading(true)
         const res = await getDetailMovie(id);
-        serMovie(res.data);
+        loadReviewsData();
+        serMovie(res.data)
         setLoading(false)
     }
 
@@ -55,15 +66,34 @@ const MovieDetails: React.FC<MoviesData> = ({ route: {params: { id }}}) => {
         setReviews(res.data)
     }
 
+    async function addMovieReviews() {
+
+        const data = {
+            ...addRevies,
+            movieId: id
+         }
+         
+        await postMovieReviews(data)
+        .then(() => loadReviewsData())
+        .finally(() => setAddRevies({
+            text: ""
+        }));
+    }
+
     useEffect(() => {
         loadMovieData();
-        loadReviewsData();
+        accessReviewsAuthority();
     },[])
 
+    useEffect(() => {
+        reviews.reverse();
+    },[loadReviewsData()])
+
+    reviews.reverse();
+
     return (
-
+        <View style={theme.movieContainer}>
         <ScrollView>
-
 
             {loading ? (
                 <ActivityIndicator size="large" color="#9E9E9E" style={theme.movieLoading} />
@@ -87,30 +117,56 @@ const MovieDetails: React.FC<MoviesData> = ({ route: {params: { id }}}) => {
                                 {movie?.synopsis}
                             </Text>
                         </View>
-                    </View> 
-
-                    <View style={theme.detailCard}>
-                        <View>
-                            <TextInput 
-                                placeholder='Deixe sua avaliação aqui'
-                                autoCapitalize="none"
-                                style={theme.textInput}/>
-
-                            <TouchableOpacity 
-                                style={theme.primaryButton} 
-                                activeOpacity={0.5}>
-                                <View>
-                                    <Text style={text.textButtonLogin}>
-                                        Salvar Avaliação
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                            
-                        </View>
                     </View>
 
+                        {accessReviews && (
+
+                            <View style={theme.detailCard} >
+                            <View>
+                                <TextInput 
+                                    multiline
+                                    placeholder='Deixe sua avaliação aqui'
+                                    autoCapitalize="none"
+                                    value={addRevies.text}
+                                    style={theme.textInput}
+                                    onChangeText={(event) => setAddRevies({ ...addRevies, text: event})}
+                                />
+
+                                <TouchableOpacity 
+                                    style={theme.primaryButton} 
+                                    activeOpacity={0.5}
+                                    onPress={() => addMovieReviews()}
+                                    >
+                                    <View>
+                                        <Text style={text.textButtonLogin}>
+                                            Salvar Avaliação
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
+
+                            </View>
+                        </View>
+                        )}
+                       
                     <View style={theme.detailCard}>
-                        <Text>Comentarios</Text>
+
+                        {reviews.map((review) => (
+                            <View>
+                                <View style={theme.reviewsContainer}>
+                                    <Image source={require('../../assets/icon.png')} />
+                                    <Text style={text.reviewsName}>{review.user.name}</Text>
+                                </View>
+
+                                <View style={theme.movieContainerReviews}>
+                                    <Text style={text.movieDetailReviews}>
+                                       {review.text}
+                                    </Text>
+                                </View>
+                            </View>
+                        ))}
+
+
+                        
                     </View>
 
                 </View>           
@@ -120,6 +176,7 @@ const MovieDetails: React.FC<MoviesData> = ({ route: {params: { id }}}) => {
  
            
         </ScrollView>
+        </View>
     )
 }
 
