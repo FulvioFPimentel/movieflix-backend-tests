@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "frontend-mobile",
+    "name": "MovieFlex",
     "slug": "frontend-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFC700"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,16 +17,17 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.devsuperior.dsmovieflix",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.devsuperior.dsmovieflix",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }
