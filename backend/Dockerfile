@@ -5,7 +5,7 @@ RUN apt-get install openjdk-11-jdk -y
 COPY . .
 
 RUN apt-get install maven -y
-RUN mvnw clean install
+RUN mvn clean install
 
 FROM openjdk:11-jdk-slim
 
