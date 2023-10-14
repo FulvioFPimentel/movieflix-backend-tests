@@ -35,7 +35,6 @@ interface movieData {
         name: userData,
         text: string
     }],
-
 }
 
 const MovieDetails: React.FC<MoviesData> = ({ route: {params: { id }}}) => {
@@ -164,17 +163,12 @@ const MovieDetails: React.FC<MoviesData> = ({ route: {params: { id }}}) => {
                                 </View>
                             </View>
                         ))}
-
-
                         
                     </View>
 
                 </View>           
             )}  
-             
-
- 
-           
+            
         </ScrollView>
         </View>
     )

@@ -3,7 +3,7 @@ import axios from 'axios'
 // axios.defaults.headers.common = {'Authorization': `bearer ${userToken() }`}
 
 export const api = axios.create({
-    baseURL: "https://fulvio-dsmovieflix.herokuapp.com"
+    baseURL: "192.168.0.106:8080"
 
 })
 

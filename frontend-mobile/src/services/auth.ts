@@ -49,10 +49,10 @@ export async function getSessionData() {
 export async function getAccessTokenDecoded() {
     const sessionData = await getSessionData();
 
-    try{
+    try {
         const tokenDecoded = jwtDecode(sessionData)
         return tokenDecoded as accessTokenDecoded;
-    }catch (error) {
+    } catch (error) {
         return {} as accessTokenDecoded;
     }
 }

@@ -1,4 +1,4 @@
-package com.devsuperior.movieflix.services;
+	package com.devsuperior.movieflix.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +20,7 @@ import com.devsuperior.movieflix.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class MovieService {
-	
+		
 	@Autowired
 	private MovieRepository repository;
 	
@@ -33,7 +33,7 @@ public class MovieService {
 		Movie entity = movie.orElseThrow(() -> new ResourceNotFoundException("Entity not Found"));
 		return new MovieDTO(entity, entity.getReviews());
 	}
-
+	
 	@Transactional(readOnly = true)
 	public Page<MovieDTO> findAllPaged(Long genreId, PageRequest pageRequest) {
 		Genre genre = (genreId == 0) ? null : genreRepository.getOne(genreId) ;
